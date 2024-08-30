@@ -1,12 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxyqk3rrfgehv"]
+[gd_scene load_steps=6 format=3 uid="uid://bxyqk3rrfgehv"]
 
 [ext_resource type="PackedScene" uid="uid://cuih03n63vmoq" path="res://content/Joueur.tscn" id="1_0fr6d"]
 [ext_resource type="PackedScene" uid="uid://xfqy1pr1e1gb" path="res://content/Chat.tscn" id="2_5ywmr"]
+[ext_resource type="Script" path="res://content/MouvementChat.cs" id="2_oclw7"]
+[ext_resource type="PackedScene" uid="uid://b8psmeoo83yce" path="res://content/BalleVilain.tscn" id="4_blnwo"]
+
+[sub_resource type="Curve2D" id="Curve2D_nccfs"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 69, 50, 0, 0, 0, 0, 553, 52, 0, 0, 0, 0, 880, 102, 0, 0, 0, 0, 932, 324, 0, 0, 0, 0, 867, 454, 0, 0, 0, 0, 756, 242, 0, 0, 0, 0, 582, 418, 0, 0, 0, 0, 340, 430, 0, 0, 0, 0, 115, 435, 0, 0, 0, 0, 251, 285, 0, 0, 0, 0, 69, 50)
+}
+point_count = 11
 
 [node name="Niveau" type="Node2D"]
 
 [node name="Joueur" parent="." instance=ExtResource("1_0fr6d")]
 position = Vector2(403, 214)
 
-[node name="Chat" parent="." instance=ExtResource("2_5ywmr")]
-position = Vector2(625, 215)
+[node name="ChemineChat" type="Path2D" parent="."]
+curve = SubResource("Curve2D_nccfs")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ChemineChat"]
+position = Vector2(643.421, 355.873)
+rotation = 2.35048
+progress = 1587.59
+script = ExtResource("2_oclw7")
+Vitesse = 0.2
+VilainBoulet = ExtResource("4_blnwo")
+
+[node name="Chat" parent="ChemineChat/PathFollow2D" instance=ExtResource("2_5ywmr")]
+rotation = -0.00413221
+
+[node name="BalleVilain" parent="." instance=ExtResource("4_blnwo")]
+position = Vector2(324, 118)
+Vitesse = Vector2(-200, 0)

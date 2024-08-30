@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8psmeoo83yce"]
+
+[ext_resource type="Texture2D" uid="uid://dnlj70m5hd5ry" path="res://asset/balle_vilain.png" id="1_pn0y4"]
+[ext_resource type="Script" path="res://content/BalleVilain.cs" id="1_v5rem"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dodrk"]
+size = Vector2(11.5, 10)
+
+[node name="BalleVilain" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_v5rem")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.75, 0)
+shape = SubResource("RectangleShape2D_dodrk")
+
+[node name="BalleVilain" type="Sprite2D" parent="CollisionShape2D"]
+texture_filter = 1
+position = Vector2(-0.75, 0)
+texture = ExtResource("1_pn0y4")
